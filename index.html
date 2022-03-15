@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Сервис Место — делись фотографиями</title>
+  <meta name="description" content="Проект о путешествиях по России">
+  <meta name="keywords" content="путешествие, россия, алтай, байкал, карелия">
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <a href="#" class="logo header__logo">
+        <img src="./images/logo.svg" alt="Logo Mesto">
+      </a>
+    </header>
+    <main class="content">
+      <section class="profile">
+        <img src="./images/avatar.jpg" alt="Avatar image" class="profile__avatar avatar">
+        <div class="profile__info">
+          <h1 class="profile__title">Жак-Ив Кусто</h1>
+          <p class="profile__subtitle">Исследователь океана</p>
+          <button type="button" class="profile__edit-button"></button>
+        </div>
+        <button type="button" class="profile__add-button"></button>
+      </section>
+      <section class="elements">
+        <ul class="elements__list">
+          <li class="elements__item card">
+            <img class="card__image" src="images/karachaevsk.jpg" alt="Карачаевск">
+            <h3 class="card__title">Карачаевск</h3>
+            <img class="card__like-button" src="images/like-button.svg" alt="Лайкнуть">
+          </li>
+          <li class="elements__item card">
+            <img class="card__image" src="images/elbrus.jpg" alt="Гора Эльбрус">
+            <h3 class="card__title">Гора Эльбрус</h3>
+            <img class="card__like-button" src="images/like-button.svg" alt="Лайкнуть">
+          </li>
+          <li class="elements__item card">
+            <img class="card__image" src="images/dombay.jpg" alt="Домбай">
+            <h3 class="card__title">Домбай</h3>
+            <img class="card__like-button" src="images/like-button.svg" alt="Лайкнуть">
+          </li>
+          <li class="elements__item card">
+            <img class="card__image" src="images/elbrus.jpg" alt="Гора Эльбрус">
+            <h3 class="card__title">Гора Эльбрус</h3>
+            <img class="card__like-button" src="images/like-button.svg" alt="Лайкнуть">
+          </li>
+          <li class="elements__item card">
+            <img class="card__image" src="images/dombay.jpg" alt="Домбай">
+            <h3 class="card__title">Домбай</h3>
+            <img class="card__like-button" src="images/like-button.svg" alt="Лайкнуть">
+          </li>
+          <li class="elements__item card">
+            <img class="card__image" src="images/karachaevsk.jpg" alt="Карачаево-Черкессия">
+            <h3 class="card__title">Карачаево-Черкессия</h3>
+            <img class="card__like-button" src="images/like-button.svg" alt="Лайкнуть">
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">© 2020 Mesto Russia</p>
+    </footer>
+    <section class="popup">
+      <div class="popup__container">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form action="post" class="popup__form form">
+          <label for="feedback-name">Ваше имя:</label>
+          <input id="feedback-name" type="text" name="name" placeholder="Жак-Ив Кусто">
+          <label for="feedback-name">О себе:</label>
+          <input id="feedback-name" type="text" name="profile" placeholder="Исследователь океана">
+          <button class="button" type="submit">Сохранить</button>
+        </form>
+        <button class="modal-close" type="button">Закрыть</button>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
