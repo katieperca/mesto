@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="./pages/index.css">
   <title>Сервис Место — делись фотографиями</title>
-  <meta name="description" content="Проект о путешествиях по России">
-  <meta name="keywords" content="путешествие, россия, алтай, байкал, карелия">
+  <meta name="description" content="Сервис для публикации фото">
+  <meta name="keywords" content="фото, лайк, изображения, картинка, профиль">
 </head>
 <body>
   <div class="page">
@@ -20,42 +20,54 @@
         <img src="./images/avatar.jpg" alt="Аватар" class="profile__avatar avatar">
         <div class="profile__info">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
-          <button type="button" class="profile__edit-button"></button>
+          <button type="button" class="profile__edit-button button button_type_edit"></button>
           <p class="profile__subtitle">Исследователь океана</p>
         </div>
-        <button type="button" class="profile__add-button"></button>
+        <button type="button" class="profile__add-button button button_type_add"></button>
       </section>
       <section class="elements">
         <ul class="elements__list">
           <li class="elements__item card">
             <img class="card__image" src="images/karachaevsk.jpg" alt="Карачаевск">
-            <h3 class="card__title">Карачаевск</h3>
-            <img class="card__like-button" src="images/like-button.svg" alt="Лайкнуть">
+            <div class="card__info">
+              <h3 class="card__title">Карачаевск</h3>
+              <button class="card__like-button button button_type_like"></button>
+            </div>
           </li>
           <li class="elements__item card">
             <img class="card__image" src="images/elbrus.jpg" alt="Гора Эльбрус">
-            <h3 class="card__title">Гора Эльбрус</h3>
-            <img class="card__like-button" src="images/like-button.svg" alt="Лайкнуть">
+            <div class="card__info">
+              <h3 class="card__title">Гора Эльбрус</h3>
+              <button class="card__like-button button button_type_like"></button>
+            </div>
           </li>
           <li class="elements__item card">
             <img class="card__image" src="images/dombay.jpg" alt="Домбай">
-            <h3 class="card__title">Домбай</h3>
-            <img class="card__like-button" src="images/like-button.svg" alt="Лайкнуть">
+            <div class="card__info">
+              <h3 class="card__title">Домбай</h3>
+              <button class="card__like-button button button_type_like"></button>
+            </div>
           </li>
           <li class="elements__item card">
             <img class="card__image" src="images/elbrus.jpg" alt="Гора Эльбрус">
-            <h3 class="card__title">Гора Эльбрус</h3>
-            <img class="card__like-button" src="images/like-button.svg" alt="Лайкнуть">
+            <div class="card__info">
+              <h3 class="card__title">Гора Эльбрус</h3>
+              <button class="card__like-button button button_type_like"></button>
+            </div>
           </li>
           <li class="elements__item card">
             <img class="card__image" src="images/dombay.jpg" alt="Домбай">
-            <h3 class="card__title">Домбай</h3>
-            <img class="card__like-button" src="images/like-button.svg" alt="Лайкнуть">
+            <div class="card__info">
+              <h3 class="card__title">Домбай</h3>
+              <button class="card__like-button button button_type_like"></button>
+            </div>
           </li>
           <li class="elements__item card">
             <img class="card__image" src="images/karachaevsk.jpg" alt="Карачаево-Черкессия">
-            <h3 class="card__title">Карачаево-Черкессия</h3>
-            <img class="card__like-button" src="images/like-button.svg" alt="Лайкнуть">
+            <div class="card__info">
+              <h3 class="card__title">Карачаево-Черкессия</h3>
+              <button class="card__like-button button button_type_like"></button>
+            </div>
           </li>
         </ul>
       </section>
@@ -71,7 +83,7 @@
           <input id="feedback-name" type="text" name="name" placeholder="Жак-Ив Кусто">
           <label for="feedback-name">О себе:</label>
           <input id="feedback-name" type="text" name="profile" placeholder="Исследователь океана">
-          <button class="button" type="submit">Сохранить</button>
+          <button class="button button_type_save" type="submit">Сохранить</button>
         </form>
         <button class="modal-close" type="button">Закрыть</button>
       </div>
