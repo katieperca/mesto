@@ -72,20 +72,18 @@
         </ul>
       </section>
     </main>
-    <footer class="footer">
+    <footer class="footer container">
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
     <section class="popup">
       <div class="popup__container">
-        <h2 class="popup__title">Редактировать профиль</h2>
         <form action="post" class="popup__form form">
-          <label for="feedback-name">Ваше имя:</label>
-          <input id="feedback-name" type="text" name="name" placeholder="Жак-Ив Кусто">
-          <label for="feedback-name">О себе:</label>
-          <input id="feedback-name" type="text" name="profile" placeholder="Исследователь океана">
-          <button class="button button_type_save" type="submit">Сохранить</button>
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <input class="popup__input" id="popup-name" type="text" name="name" placeholder="Жак-Ив Кусто">
+          <input class="popup__input" id="popup-profile" type="text" name="profile" placeholder="Исследователь океана">
+          <button class="opup__save-button button button_type_save" type="submit">Сохранить</button>
         </form>
-        <button class="modal-close" type="button">Закрыть</button>
+        <button class="popup__close-button button button_type_close" type="button">Закрыть</button>
       </div>
     </section>
   </div>
