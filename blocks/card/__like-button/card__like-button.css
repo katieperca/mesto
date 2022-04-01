@@ -6,5 +6,13 @@
   background-position: center;
   background-repeat: no-repeat;
   border: none;
+  cursor: pointer;
 }
 
+.button_type_like:hover {
+  opacity: 0.5;
+}
+
+.button_type_like:active {
+  background-image: url('../../../images/like-button-active.svg');
+}

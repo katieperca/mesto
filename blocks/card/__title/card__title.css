@@ -1,6 +1,6 @@
 .card__title {
   margin: 0;
-  max-width: 190px;
+  max-width: 85%;
   overflow: hidden;
 	text-overflow: ellipsis;
   white-space: nowrap;
@@ -10,13 +10,7 @@
   font-weight: 900;
 }
 
-@media screen and (min-width: 768px) {
-  .card__title {
-    max-width: 160px;
-  }
-}
-
-@media screen and (min-width: 18px) {
+@media screen and (min-width: 1024px) {
   .card__title {
     max-width: 190px;
   }

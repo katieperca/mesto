@@ -28,45 +28,45 @@
       <section class="elements">
         <ul class="elements__list">
           <li class="elements__item card">
-            <img class="card__image" src="images/karachaevsk.jpg" alt="Карачаевск">
+            <img class="card__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
             <div class="card__info">
               <h3 class="card__title">Карачаевск</h3>
-              <button class="card__like-button button button_type_like"></button>
+              <button type="button" class="card__like-button button button_type_like"></button>
             </div>
           </li>
           <li class="elements__item card">
-            <img class="card__image" src="images/elbrus.jpg" alt="Гора Эльбрус">
+            <img class="card__image" src="./images/elbrus.jpg" alt="Гора Эльбрус">
             <div class="card__info">
               <h3 class="card__title">Гора Эльбрус</h3>
-              <button class="card__like-button button button_type_like"></button>
+              <button type="button" class="card__like-button button button_type_like"></button>
             </div>
           </li>
           <li class="elements__item card">
-            <img class="card__image" src="images/dombay.jpg" alt="Домбай">
+            <img class="card__image" src="./images/dombay.jpg" alt="Домбай">
             <div class="card__info">
               <h3 class="card__title">Домбай</h3>
-              <button class="card__like-button button button_type_like"></button>
+              <button type="button" class="card__like-button button button_type_like"></button>
             </div>
           </li>
           <li class="elements__item card">
-            <img class="card__image" src="images/elbrus.jpg" alt="Гора Эльбрус">
+            <img class="card__image" src="./images/elbrus.jpg" alt="Гора Эльбрус">
             <div class="card__info">
               <h3 class="card__title">Гора Эльбрус</h3>
-              <button class="card__like-button button button_type_like"></button>
+              <button type="button" class="card__like-button button button_type_like"></button>
             </div>
           </li>
           <li class="elements__item card">
-            <img class="card__image" src="images/dombay.jpg" alt="Домбай">
+            <img class="card__image" src="./images/dombay.jpg" alt="Домбай">
             <div class="card__info">
               <h3 class="card__title">Домбай</h3>
-              <button class="card__like-button button button_type_like"></button>
+              <button type="button" class="card__like-button button button_type_like"></button>
             </div>
           </li>
           <li class="elements__item card">
-            <img class="card__image" src="images/karachaevsk.jpg" alt="Карачаево-Черкессия">
+            <img class="card__image" src="./images/karachaevsk.jpg" alt="Карачаево-Черкессия">
             <div class="card__info">
               <h3 class="card__title">Карачаево-Черкессия</h3>
-              <button class="card__like-button button button_type_like"></button>
+              <button type="button" class="card__like-button button button_type_like"></button>
             </div>
           </li>
         </ul>
@@ -78,14 +78,15 @@
     <section class="popup">
       <div class="popup__container">
         <form action="post" class="popup__form form">
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <input class="popup__input" id="popup-name" type="text" name="name" placeholder="Жак-Ив Кусто">
-          <input class="popup__input" id="popup-profile" type="text" name="profile" placeholder="Исследователь океана">
-          <button class="opup__save-button button button_type_save" type="submit">Сохранить</button>
+          <h2 class="form__title">Редактировать профиль</h2>
+          <input class="form__input" id="name" type="text" name="name">
+          <input class="form__input" id="job" type="text" name="job">
+          <button class="form__save-button button button_type_save" type="submit">Сохранить</button>
         </form>
         <button class="popup__close-button button button_type_close" type="button">Закрыть</button>
       </div>
     </section>
   </div>
+  <script src="./scripts/index.js"></script>
 </body>
 </html>
