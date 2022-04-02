@@ -16,4 +16,4 @@
 [JavaScript](https://www.ecma-international.org/publications-and-standards/standards/ecma-262/)
 
 ## Опубликованная версия
-[Вот она](https://katieperca.github.io/russian-travel/)
+[Вот она](https://katieperca.github.io/mesto/)
