@@ -6,13 +6,11 @@
 @media screen and (min-width: 768px) {
   .container {
     padding: 0 40px;
-    margin: 0 auto;
   }
 }
 
 @media screen and (min-width: 1024px) {
   .container {
     padding: 0;
-    margin: 0 auto;
   }
 }

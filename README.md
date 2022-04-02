@@ -1,17 +1,19 @@
 # Проект: Место
 
-### Обзор
+[![HTML](https://img.shields.io/badge/HTML-5-brightgreen)](https://www.w3.org/html/)
+[![CSS](https://img.shields.io/badge/CSS-3-brightgreen)](https://www.w3.org/Style/CSS/)
+[![Flexbox](https://img.shields.io/badge/Flexbox-1-brightgreen)](https://www.w3.org/TR/css-flexbox-1/)
+[![Grid Layout](https://img.shields.io/badge/Grid%20Layout-1-brightgreen)](https://www.w3.org/TR/css-grid-1/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-%20-brightgreen)](https://www.ecma-international.org/publications-and-standards/standards/ecma-262/)
+## Что за проект
+Одностраничник, который позволяет делиться фотографиями. Студенты отрабатывают навыки адаптивной верстки и начальные знания JavaScript.
 
-* Figma
-* Картинки
+## Технологии
+[HTML](https://www.w3.org/html/)
+[CSS](https://www.w3.org/Style/CSS/)
+[Flexbox](https://www.w3.org/TR/css-flexbox-1/)
+[Grid Layout](https://www.w3.org/TR/css-grid-1/)
+[JavaScript](https://www.ecma-international.org/publications-and-standards/standards/ecma-262/)
 
-**Figma**
-
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
-
-**Картинки**
-
-Доставать картинки предстоит из Фигмы. Это расхожая практика, поэтому полезно потренироваться.
-Не забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
-
-Удачи!
+## Опубликованная версия
+[Вот она](https://katieperca.github.io/russian-travel/)

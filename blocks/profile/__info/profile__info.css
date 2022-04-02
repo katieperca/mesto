@@ -13,8 +13,6 @@
   .profile__info {
     max-width: 350px;
     justify-content: flex-start;
-    margin: 0;
-    margin-left: 30px;
-    margin-right: auto;
+    margin: 0 auto 0 30px;
   }
 }
