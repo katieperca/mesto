@@ -6,7 +6,6 @@ let nameInput = formElement.querySelector('#name');
 let jobInput = formElement.querySelector('#job');
 let profileTitle = document.querySelector('.profile__title');
 let profileSubtitle = document.querySelector('.profile__subtitle');
-let saveButton = formElement.querySelector('.form__save-button');
 
 editButton.addEventListener('click', function () {
   popup.classList.add('popup_opened');
