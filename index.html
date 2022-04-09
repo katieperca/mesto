@@ -8,7 +8,7 @@
   <meta name="description" content="Сервис для публикации фото">
   <meta name="keywords" content="фото, лайк, изображения, картинка, профиль">
 </head>
-<body>
+<body class="preload">
   <div class="page">
     <header class="header">
       <a href="#" class="logo header__logo">
@@ -27,57 +27,15 @@
       </section>
       <section class="elements">
         <ul class="elements__list">
-          <li class="elements__item card">
-            <img class="card__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
-            <div class="card__info">
-              <h3 class="card__title">Карачаевск</h3>
-              <button aria-label="Поставить лайк" type="button" class="card__like-button button button_type_like"></button>
-            </div>
-          </li>
-          <li class="elements__item card">
-            <img class="card__image" src="./images/elbrus.jpg" alt="Гора Эльбрус">
-            <div class="card__info">
-              <h3 class="card__title">Гора Эльбрус</h3>
-              <button aria-label="Поставить лайк" type="button" class="card__like-button button button_type_like"></button>
-            </div>
-          </li>
-          <li class="elements__item card">
-            <img class="card__image" src="./images/dombay.jpg" alt="Домбай">
-            <div class="card__info">
-              <h3 class="card__title">Домбай</h3>
-              <button aria-label="Поставить лайк" type="button" class="card__like-button button button_type_like"></button>
-            </div>
-          </li>
-          <li class="elements__item card">
-            <img class="card__image" src="./images/elbrus.jpg" alt="Гора Эльбрус">
-            <div class="card__info">
-              <h3 class="card__title">Гора Эльбрус</h3>
-              <button aria-label="Поставить лайк" type="button" class="card__like-button button button_type_like"></button>
-            </div>
-          </li>
-          <li class="elements__item card">
-            <img class="card__image" src="./images/dombay.jpg" alt="Домбай">
-            <div class="card__info">
-              <h3 class="card__title">Домбай</h3>
-              <button aria-label="Поставить лайк" type="button" class="card__like-button button button_type_like"></button>
-            </div>
-          </li>
-          <li class="elements__item card">
-            <img class="card__image" src="./images/karachaevsk.jpg" alt="Карачаево-Черкессия">
-            <div class="card__info">
-              <h3 class="card__title">Карачаево-Черкессия</h3>
-              <button aria-label="Поставить лайк" type="button" class="card__like-button button button_type_like"></button>
-            </div>
-          </li>
         </ul>
       </section>
     </main>
     <footer class="footer container">
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
-    <section class="popup">
+    <section class="popup popup_type_edit popup">
       <div class="popup__container">
-        <form action="post" class="popup__form form">
+        <form action="post" class="popup__form popup__form_type_edit form">
           <h2 class="form__title">Редактировать профиль</h2>
           <input class="form__input" id="name" type="text" name="name">
           <input class="form__input" id="job" type="text" name="job">
@@ -86,7 +44,35 @@
         <button class="popup__close-button button button_type_close" type="button">Закрыть</button>
       </div>
     </section>
+    <section class="popup popup_type_add">
+      <div class="popup__container">
+        <form action="post" class="popup__form popup__form_type_add form">
+          <h2 class="form__title">Новое место</h2>
+          <input class="form__input" id="place-name" type="text" name="place-name" placeholder="Название">
+          <input class="form__input" id="photo" type="text" name="photo" placeholder="Ссылка на картинку">
+          <button class="form__save-button button button_type_save" type="submit">Сохранить</button>
+        </form>
+        <button class="popup__close-button button button_type_close" type="button">Закрыть</button>
+      </div>
+    </section>
+    <section class="popup popup_type_photo">
+      <div class="popup__photo-container">
+        <img class="popup__image">
+        <h3 class="popup__title"></h3>
+        <button class="popup__close-button button button_type_close" type="button">Закрыть</button>
+      </div>
+    </section>
   </div>
+  <template id="card-template">
+    <li class="elements__item card">
+      <img class="card__image" src="" alt="">
+      <button aria-label="Удалить" type="button" class="card__delete-button button button_type_delete"></button>
+      <div class="card__info">
+        <h3 class="card__title"></h3>
+        <button aria-label="Поставить лайк" type="button" class="card__like-button button button_type_like"></button>
+      </div>
+    </li>
+  </template>
   <script src="./scripts/index.js"></script>
 </body>
 </html>
