@@ -51,20 +51,11 @@ function closePopup (popup) {
   popup.classList.remove('popup_opened');
 }
 
-function clearFormFields (popup) {
-  popup.querySelectorAll('input').forEach((input) => {
-    input.value = '';
-  });
-}
-
 function initPopups () {
   popups.forEach((popup) => {
     popup.classList.remove('popup__preload');
     popup.querySelector('.popup__close-button').addEventListener('click', function () {
       closePopup(popup);
-      if (popup.classList.contains('popup_type_edit')) {
-        clearFormFields(popup);
-      }
     });
   });
 }
@@ -81,7 +72,6 @@ function submitformEditProfile (evt) {
   profileTitle.textContent = nameInput.value;
   profileSubtitle.textContent = jobInput.value;
   closePopup(popupEditProfile);
-  clearFormFields (popupEditProfile);
 }
 
 function fillCards () {
@@ -111,6 +101,7 @@ function submitformAddCard (evt) {
   evt.preventDefault();
   addNewCard(placeName.value, placeLink.value);
   closePopup(popupAddCard);
+  formAddCard.reset();
 }
 
 function toggleLike (evt) {
