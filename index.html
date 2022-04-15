@@ -37,9 +37,9 @@
       <div class="popup__container">
         <form action="post" class="popup__form popup__form_type_edit form">
           <h2 class="form__title">Редактировать профиль</h2>
-          <input class="form__input" id="name" type="text" name="name">
-          <input class="form__input" id="job" type="text" name="job">
-          <button class="form__save-button button button_type_save" type="submit">Сохранить</button>
+          <input class="form__input" id="name" type="text" name="name" minlength="2" maxlength="40" required>
+          <input class="form__input" id="job" type="text" name="job" minlength="2" maxlength="200" required>
+          <button class="form__save-button form__save-button_inactive button button_type_save" type="submit">Сохранить</button>
         </form>
         <button class="popup__close-button button button_type_close" type="button">Закрыть</button>
       </div>
@@ -48,8 +48,8 @@
       <div class="popup__container">
         <form action="post" class="popup__form popup__form_type_add form">
           <h2 class="form__title">Новое место</h2>
-          <input class="form__input" id="place-name" type="text" name="place-name" placeholder="Название">
-          <input class="form__input" id="photo" type="text" name="photo" placeholder="Ссылка на картинку">
+          <input class="form__input" id="place-name" type="text" name="place-name" placeholder="Название" minlength="2" maxlength="30" required>
+          <input class="form__input" id="photo" type="url" name="photo" placeholder="Ссылка на картинку" required>
           <button class="form__save-button button button_type_save" type="submit">Сохранить</button>
         </form>
         <button class="popup__close-button button button_type_close" type="button">Закрыть</button>
@@ -76,5 +76,6 @@
     </li>
   </template>
   <script src="./scripts/index.js"></script>
+  <script src="./scripts/validate.js"></script>
 </body>
 </html>
