@@ -3,6 +3,7 @@ const popupAddCard = document.querySelector('.popup_type_add');
 const popupEditProfile = document.querySelector('.popup_type_edit');
 const buttonAddCard = document.querySelector('.profile__add-button');
 const buttonEditProfile = document.querySelector('.profile__edit-button');
+const buttonSubmit = document.querySelector('.form__save-button_type_add');
 const formAddCard = document.querySelector('.popup__form_type_add');
 const formEditProfile = document.querySelector('.popup__form_type_edit');
 const nameInput = formEditProfile.querySelector('#name');
@@ -102,6 +103,8 @@ function submitformAddCard (evt) {
   addNewCard(placeName.value, placeLink.value);
   closePopup(popupAddCard);
   formAddCard.reset();
+  buttonSubmit.classList.add('form__save-button_inactive');
+  buttonSubmit.setAttribute('disabled', '');
 }
 
 function toggleLike (evt) {
