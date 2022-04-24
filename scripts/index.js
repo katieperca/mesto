@@ -58,6 +58,16 @@ function initPopups () {
     popup.querySelector('.popup__close-button').addEventListener('click', function () {
       closePopup(popup);
     });
+    document.addEventListener('keydown', function (evt) {
+      if (evt.key === "Escape") {
+        closePopup(popup);
+      }
+    });
+    popup.addEventListener('mousedown', function (evt) {
+      if (evt.currentTarget === evt.target) {
+        closePopup(popup);
+      }
+    });
   });
 }
 
