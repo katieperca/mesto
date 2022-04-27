@@ -3,7 +3,8 @@ const popupAddCard = document.querySelector('.popup_type_add');
 const popupEditProfile = document.querySelector('.popup_type_edit');
 const buttonAddCard = document.querySelector('.profile__add-button');
 const buttonEditProfile = document.querySelector('.profile__edit-button');
-const buttonSubmit = document.querySelector('.form__save-button_type_add');
+const buttonSubmitAdd = document.querySelector('.form__save-button_type_add');
+const buttonSubmitProfile = document.querySelector('.form__save-button_type_edit');
 const formAddCard = document.querySelector('.popup__form_type_add');
 const formEditProfile = document.querySelector('.popup__form_type_edit');
 const nameInput = formEditProfile.querySelector('#name');
@@ -44,30 +45,48 @@ const initialCards = [
   }
 ];
 
+function resetFields(popup) {
+  const formList = Array.from(popup.querySelectorAll('.popup__form'));
+  formList.forEach((form) => {
+    const spanList = Array.from(form.querySelectorAll('.form__input-error'));
+    const inputList = Array.from(form.querySelectorAll('.form__input'));
+    form.reset();
+    spanList.forEach((span) => {
+      span.classList.remove('form__input-error_active');
+    });
+    inputList.forEach((input) => {
+      input.classList.remove('form__input_type_error');
+    });
+  });
+}
+
+function handleClose (evt) {
+  const popup = document.querySelector('.popup_opened');
+  if (
+      !evt ||
+      evt.key === "Escape" ||
+      evt.currentTarget === evt.target
+  ) {
+    closePopup(popup);
+  }
+}
+
 function openPopup (popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', handleClose);
 }
 
 function closePopup (popup) {
   popup.classList.remove('popup_opened');
+  resetFields(popup);
+  document.removeEventListener('keydown', handleClose);
 }
 
 function initPopups () {
   popups.forEach((popup) => {
     popup.classList.remove('popup__preload');
-    popup.querySelector('.popup__close-button').addEventListener('click', function () {
-      closePopup(popup);
-    });
-    document.addEventListener('keydown', function (evt) {
-      if (evt.key === "Escape") {
-        closePopup(popup);
-      }
-    });
-    popup.addEventListener('mousedown', function (evt) {
-      if (evt.currentTarget === evt.target) {
-        closePopup(popup);
-      }
-    });
+    popup.querySelector('.popup__close-button').addEventListener('click', handleClose);
+    popup.addEventListener('mousedown', handleClose);
   });
 }
 
@@ -112,9 +131,8 @@ function submitformAddCard (evt) {
   evt.preventDefault();
   addNewCard(placeName.value, placeLink.value);
   closePopup(popupAddCard);
-  formAddCard.reset();
-  buttonSubmit.classList.add('form__save-button_inactive');
-  buttonSubmit.setAttribute('disabled', '');
+  buttonSubmitAdd.classList.add('form__save-button_inactive');
+  buttonSubmitAdd.setAttribute('disabled', '');
 }
 
 function toggleLike (evt) {
@@ -137,6 +155,8 @@ preloadPopup();
 buttonEditProfile.addEventListener('click', function () {
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileSubtitle.textContent;
+  buttonSubmitProfile.classList.remove('form__save-button_inactive');
+  buttonSubmitProfile.removeAttribute('disabled');
   openPopup(popupEditProfile);
 });
 

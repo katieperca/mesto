@@ -1,76 +1,56 @@
-const showInputError = (formElement, inputElement, errorMessage) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.add('form__input_type_error');
-  errorElement.textContent = errorMessage;
-  errorElement.classList.add('form__input-error_active');
-};
+function showInputError(input, config) {
+  const span = document.querySelector(`.${input.id}-error`);
+  input.classList.add(config.inputError);
+  span.classList.add(config.spanErrorActive);
+  span.textContent = input.validationMessage;
+}
 
-const hideInputError = (formElement, inputElement) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.remove('form__input_type_error');
-  errorElement.classList.remove('form__input-error_active');
-  errorElement.textContent = '';
-};
+function hideInputError(input, config) {
+  const span = document.querySelector(`.${input.id}-error`);
+  input.classList.remove(config.inputError);
+  span.classList.remove(config.spanErrorActive);
+  span.textContent = '';
+}
 
-const checkInputValidity = (formElement, inputElement) => {
-  if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);
+function checkInputValidity(input, config) {
+  if (!input.validity.valid) {
+    showInputError(input, config);
   } else {
-    hideInputError(formElement, inputElement);
+    hideInputError(input, config);
   }
-};
+}
 
-const setEventListeners = (formElement) => {
-  const inputList = Array.from(formElement.querySelectorAll('.form__input'));
-  const buttonElement = formElement.querySelector('.form__save-button');
-  toggleButtonState(inputList, buttonElement);
-  inputList.forEach((inputElement) => {
-    inputElement.addEventListener('input', function () {
-      checkInputValidity(formElement, inputElement);
-      toggleButtonState(inputList, buttonElement);
-    });
-  });
-};
+function handleFormInput(evt, config) {
+  const form = evt.currentTarget;
+  const input = evt.target;
+  checkInputValidity(input, config);
+  setSubmitButtonState(form, config);
+}
 
-const hasInvalidInput = (inputList) => {
-    return inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
-  });
-};
-
-const toggleButtonState = (inputList, buttonElement) => {
-  if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add('form__save-button_inactive');
+function setSubmitButtonState(form, config) {
+  const button = form.querySelector(config.submitButton);
+  const isValid = form.checkValidity();
+  if (!isValid) {
+    button.classList.add(config.submitButtonInactive);
+    button.setAttribute('disabled', '');
   } else {
-    buttonElement.classList.remove('form__save-button_inactive');
+    button.classList.remove(config.submitButtonInactive);
+    button.removeAttribute('disabled');
   }
-};
+}
 
-// включение валидации вызовом enableValidation
-// все настройки передаются при вызове
-
-// enableValidation({
-//   formSelector: '.popup__form',
-//   inputSelector: '.popup__input',
-//   submitButtonSelector: '.popup__button',
-//   inactiveButtonClass: 'popup__button_disabled',
-//   inputErrorClass: 'popup__input_type_error',
-//   errorClass: 'popup__error_visible'
-// });
-
-const enableValidation = () => {
-  const formList = Array.from(document.querySelectorAll('.form'));
+function enableValidation(config) {
+  const formList = Array.from(document.querySelectorAll(config.form));
   formList.forEach((formElement) => {
-    formElement.addEventListener('submit', function (evt) {
-      evt.preventDefault();
-    });
-    const inputList = Array.from(formElement.querySelectorAll('.form__input'));
-    inputList.forEach((input) => {
-      setEventListeners(input);
-    });
+    formElement.addEventListener('input', (evt) => handleFormInput(evt, config));
   });
-};
+}
 
-enableValidation();
-
-/* Требования к валидации форм. Разбейте код валидации на функции. Вы уже делали это в теме «Валидация форм». Сделайте функцию enableValidation ответственной за включение валидации всех форм. Пусть она принимает как объект настроек все нужные функциям классы и селекторы элементов: */
+enableValidation({
+  form: '.popup__form',
+  input: '.form__input',
+  submitButton: '.form__save-button',
+  submitButtonInactive: 'form__save-button_inactive',
+  inputError: 'form__input_type_error',
+  spanErrorActive: 'form__input-error_active'
+});
