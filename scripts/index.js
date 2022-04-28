@@ -60,33 +60,37 @@ function resetFields(popup) {
   });
 }
 
-function handleClose (evt) {
-  const popup = document.querySelector('.popup_opened');
-  if (
-      !evt ||
-      evt.key === "Escape" ||
-      evt.currentTarget === evt.target
-  ) {
+function handleCloseEsc (evt) {
+  if (evt.key === "Escape") {
+    const popup = document.querySelector('.popup_opened');
+    closePopup(popup);
+  }
+}
+
+function handleCloseClick (evt) {
+  if (evt.currentTarget === evt.target) {
+    const popup = document.querySelector('.popup_opened');
     closePopup(popup);
   }
 }
 
 function openPopup (popup) {
   popup.classList.add('popup_opened');
-  document.addEventListener('keydown', handleClose);
+  document.addEventListener('keydown', handleCloseEsc);
+  popup.querySelector('.popup__close-button').addEventListener('click', handleCloseClick);
+  popup.addEventListener('mousedown', handleCloseClick);
 }
 
 function closePopup (popup) {
   popup.classList.remove('popup_opened');
-  resetFields(popup);
-  document.removeEventListener('keydown', handleClose);
+  document.removeEventListener('keydown', handleCloseEsc);
+  popup.querySelector('.popup__close-button').removeEventListener('click', handleCloseClick);
+  popup.removeEventListener('mousedown', handleCloseClick);
 }
 
 function initPopups () {
   popups.forEach((popup) => {
     popup.classList.remove('popup__preload');
-    popup.querySelector('.popup__close-button').addEventListener('click', handleClose);
-    popup.addEventListener('mousedown', handleClose);
   });
 }
 
@@ -152,15 +156,18 @@ function preloadPopup () {
 fillCards();
 preloadPopup();
 
-buttonEditProfile.addEventListener('click', function () {
+buttonEditProfile.addEventListener('click', () => {
+  resetFields(popupEditProfile);
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileSubtitle.textContent;
   buttonSubmitProfile.classList.remove('form__save-button_inactive');
   buttonSubmitProfile.removeAttribute('disabled');
   openPopup(popupEditProfile);
 });
-
 formEditProfile.addEventListener('submit', submitformEditProfile);
 formAddCard.addEventListener('submit', submitformAddCard);
 window.addEventListener('load', () => { initPopups(); });
-buttonAddCard.addEventListener('click', () => { openPopup(popupAddCard); });
+buttonAddCard.addEventListener('click', () => {
+  resetFields(popupAddCard);
+  openPopup(popupAddCard);
+});
