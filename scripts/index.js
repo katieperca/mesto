@@ -1,4 +1,6 @@
 import Card from './Card.js';
+import FormValidator from './FormValidator.js';
+import { formSettings } from './utils.js';
 
 const popups = document.querySelectorAll('.popup');
 const popupAddCard = document.querySelector('.popup_type_add');
@@ -16,10 +18,6 @@ const profileSubtitle = document.querySelector('.profile__subtitle');
 const cardsContainer = document.querySelector('.elements__list');
 const placeName = document.querySelector('#place-name');
 const placeLink = document.querySelector('#photo');
-// const popupPhoto = document.querySelector('.popup_type_photo');
-// const popupImage = document.querySelector('.popup__image');
-// const popupTitle = document.querySelector('.popup__title');
-// const cardTemplate = document.querySelector('#card-template').content;
 const initialCards = [
   {
     name: 'Архыз',
@@ -96,13 +94,6 @@ function initPopups () {
   });
 }
 
-// function previewCardImage (card) {
-//   popupTitle.textContent = card._name;
-//   popupImage.alt = card._name;
-//   popupImage.src = card._link;
-//   openPopup(popupPhoto);
-// }
-
 function submitformEditProfile (evt) {
   evt.preventDefault();
   profileTitle.textContent = nameInput.value;
@@ -110,63 +101,34 @@ function submitformEditProfile (evt) {
   closePopup(popupEditProfile);
 }
 
-// function fillCards () {
-//   initialCards.forEach((card) => {
-//     cardsContainer.append(getCard(card.name, card.link));
-//   });
-// }
-
-function fillCards () {
-  initialCards.forEach((card) => {
-    const cardItem = new Card(card.name, card.link, '#card-template');
-    const cardElement = cardItem.generateCard();
-    cardsContainer.append(cardElement);
-  });
-}
-
-// function getCard (name, link) {
-//   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
-//   const cardImage = cardElement.querySelector('.card__image');
-//   cardImage.src = link;
-//   cardImage.alt = name;
-//   cardElement.querySelector('.card__title').textContent = name;
-//   cardElement.querySelector('.card__like-button').addEventListener('click', toggleLike);
-//   cardElement.querySelector('.card__delete-button').addEventListener('click', deleteCard);
-//   cardImage.addEventListener('click', () => previewCardImage({ name, link }));
-
-//   return cardElement;
-// }
-
-// function addNewCard (cardName, cardLink) {
-//   cardsContainer.prepend(getCard(cardName, cardLink));
-// }
-
-function addNewCard (cardName, cardLink) {
+function prependCard (cardName, cardLink) {
   const cardItem = new Card(cardName, cardLink, '#card-template');
   const cardElement = cardItem.generateCard();
   cardsContainer.prepend(cardElement);
 }
 
+function fillCards () {
+  initialCards.reverse().forEach((card) => {
+    prependCard(card.name, card.link);
+  });
+}
+
 function submitformAddCard (evt) {
   evt.preventDefault();
-  addNewCard(placeName.value, placeLink.value);
+  prependCard(placeName.value, placeLink.value);
   closePopup(popupAddCard);
   buttonSubmitAdd.classList.add('form__save-button_inactive');
   buttonSubmitAdd.setAttribute('disabled', '');
 }
 
-// function toggleLike (evt) {
-//   evt.target.classList.toggle('card__like-button_active');
-// }
-
-// function deleteCard (evt) {
-//   evt.target.closest('.card').remove();
-// }
-
 function preloadPopup () {
   popups.forEach((popup) => {
     popup.classList.add('popup__preload');
   });
+}
+
+function validateForm (config, formElement) {
+  new FormValidator(config, formElement).enableValidation();
 }
 
 fillCards();
@@ -179,6 +141,7 @@ buttonEditProfile.addEventListener('click', () => {
   buttonSubmitProfile.classList.remove('form__save-button_inactive');
   buttonSubmitProfile.removeAttribute('disabled');
   openPopup(popupEditProfile);
+  validateForm(formSettings, formEditProfile);
 });
 formEditProfile.addEventListener('submit', submitformEditProfile);
 formAddCard.addEventListener('submit', submitformAddCard);
@@ -186,6 +149,7 @@ window.addEventListener('load', () => { initPopups(); });
 buttonAddCard.addEventListener('click', () => {
   resetFields(popupAddCard);
   openPopup(popupAddCard);
+  validateForm(formSettings, formAddCard);
 });
 
 export { openPopup };

@@ -47,7 +47,7 @@ export default class Card {
     this._element.closest('.card').remove();
   }
 
-  _showCardImage(popupPhoto) {
+  _showCardImage() {
     popupTitle.textContent = this._name;
     popupImage.alt = this._name;
     popupImage.src = this._link;

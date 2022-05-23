@@ -6,7 +6,7 @@
 [![Grid Layout](https://img.shields.io/badge/Grid%20Layout-1-brightgreen)](https://www.w3.org/TR/css-grid-1/)
 [![JavaScript](https://img.shields.io/badge/JavaScript-%20-brightgreen)](https://www.ecma-international.org/publications-and-standards/standards/ecma-262/)
 ## Что за проект
-Одностраничник, который позволяет делиться фотографиями. Студенты отрабатывают навыки адаптивной верстки и начальные знания JavaScript.
+Одностраничник, который позволяет делиться фотографиями. Студенты отрабатывают навыки адаптивной верстки и знания JavaScript (ООП).
 
 ## Технологии
 [HTML](https://www.w3.org/html/)
