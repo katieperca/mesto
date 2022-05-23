@@ -1,6 +1,6 @@
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
-import { formSettings } from './utils.js';
+import { formSettings, initialCards } from './utils.js';
 
 const popups = document.querySelectorAll('.popup');
 const popupAddCard = document.querySelector('.popup_type_add');
@@ -18,32 +18,6 @@ const profileSubtitle = document.querySelector('.profile__subtitle');
 const cardsContainer = document.querySelector('.elements__list');
 const placeName = document.querySelector('#place-name');
 const placeLink = document.querySelector('#photo');
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 
 function resetFields(popup) {
   const formList = Array.from(popup.querySelectorAll('.popup__form'));
