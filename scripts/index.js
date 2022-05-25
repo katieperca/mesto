@@ -25,9 +25,8 @@ function handleCloseEsc (evt) {
 }
 
 function handleCloseClick (evt) {
-  if (evt.currentTarget === evt.target) {
-    const popup = document.querySelector('.popup_opened');
-    closePopup(popup);
+  if (evt.currentTarget === evt.target || evt.target.classList.contains('popup__close-button')) {
+    closePopup(evt.currentTarget);
   }
 }
 
@@ -45,7 +44,6 @@ function closePopup (popup) {
 
 function initPopups () {
   popups.forEach((popup) => {
-    popup.querySelector('.popup__close-button').addEventListener('click', handleCloseClick);
     popup.classList.remove('popup__preload');
   });
 }
