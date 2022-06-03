@@ -1,6 +1,7 @@
 const popupPhoto = document.querySelector('.popup_type_photo');
 const popupImage = document.querySelector('.popup__image');
 const popupTitle = document.querySelector('.popup__title');
+const cardListSection = '.elements__list';
 const initialCards = [
   {
     name: 'Архыз',
@@ -36,4 +37,4 @@ const formSettings = {
   spanErrorActive: 'form__input-error_active'
 };
 
-export { popupPhoto, popupImage, popupTitle, initialCards, formSettings };
+export { popupPhoto, popupImage, popupTitle, initialCards, formSettings, cardListSection };

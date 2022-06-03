@@ -1,6 +1,7 @@
+import Section from './Section.js';
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
-import { formSettings, initialCards } from './utils.js';
+import { formSettings, initialCards, cardListSection } from './utils.js';
 
 const popups = document.querySelectorAll('.popup');
 const popupAddCard = document.querySelector('.popup_type_add');
@@ -55,20 +56,47 @@ function submitformEditProfile (evt) {
   closePopup(popupEditProfile);
 }
 
-function createCard (cardName, cardLink) {
-  const cardItem = new Card(cardName, cardLink, '#card-template');
-  return cardItem.generateCard();
-}
+// export default class Section {
+//   constructor({ items, renderer }, containerSelector) {
+//     this._renderedItems = items;
+//     this._renderer = renderer;
+//     this._container = document.querySelector(containerSelector);
+//   }
+
+//   renderItems() {
+//     this._renderedItems.reverse().forEach(item => this._renderer(item));
+//   }
+
+//   addItem(element) {
+//     this._container.prepend(element);
+//   }
+// }
+
+const cardList = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const card = new Card(item.name, item.link, '#card-template');
+    const cardItem = card.generateCard();
+    cardList.addItem(cardItem);
+  }
+}, cardListSection);
+
+cardList.renderItems();
+
+// function createCard (cardName, cardLink) {
+//   const cardItem = new Card(cardName, cardLink, '#card-template');
+//   return cardItem.generateCard();
+// }
 
 function prependCard (cardName, cardLink) {
   cardsContainer.prepend(createCard(cardName, cardLink));
 }
 
-function fillCards () {
-  initialCards.reverse().forEach((card) => {
-    prependCard(card.name, card.link);
-  });
-}
+// function fillCards () {
+//   initialCards.reverse().forEach((card) => {
+//     prependCard(card.name, card.link);
+//   });
+// }
 
 function submitformAddCard (evt) {
   evt.preventDefault();
@@ -87,7 +115,7 @@ const newCardValidation = new FormValidator(formSettings, formAddCard);
 profileValidation.enableValidation();
 newCardValidation.enableValidation();
 
-fillCards();
+// fillCards();
 preloadPopup();
 
 buttonEditProfile.addEventListener('click', () => {
