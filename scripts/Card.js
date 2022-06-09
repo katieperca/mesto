@@ -1,15 +1,14 @@
-import { popupPhoto, popupImage, popupTitle } from './utils.js';
-import { openPopup } from './index.js';
 export default class Card {
-  constructor(name, link, selector) {
-    this._name = name;
-    this._link = link;
-    this._selector = selector;
+  constructor({data, handleCardClick}, cardSelector) {
+    this._name = data.name;
+    this._link = data.link;
+    this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getElement() {
     const cardElement = document
-    .querySelector(this._selector)
+    .querySelector(this._cardSelector)
     .content
     .querySelector('.card')
     .cloneNode(true);
@@ -37,7 +36,7 @@ export default class Card {
       this._deleteCard();
     });
     this._element.querySelector('.card__image').addEventListener('click', () => {
-      this._showCardImage(popupPhoto);
+      this._handleCardClick();
     });
   }
 
@@ -48,13 +47,6 @@ export default class Card {
   _deleteCard() {
     this._element.remove();
     this._element = null;
-  }
-
-  _showCardImage() {
-    popupTitle.textContent = this._name;
-    popupImage.alt = this._name;
-    popupImage.src = this._link;
-    openPopup(popupPhoto);
   }
 }
 
