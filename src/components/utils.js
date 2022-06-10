@@ -1,14 +1,11 @@
-export const popupElement = document.querySelector('.popup');
-export const popupElementOpened = document.querySelector('.popup_opened');
-export const popupPhoto = document.querySelector('.popup_type_photo');
-export const popupImage = document.querySelector('.popup__image');
-export const popupTitle = document.querySelector('.popup__title');
-export const popupCloseButton = document.querySelector('.popup__close-button');
+export const popups = document.querySelectorAll('.popup');
+export const buttonAddCard = document.querySelector('.profile__add-button');
+export const buttonEditProfile = document.querySelector('.profile__edit-button');
+export const formAddCard = document.querySelector('.popup__form_type_add');
 export const formEditProfile = document.querySelector('.popup__form_type_edit');
 export const nameInput = formEditProfile.querySelector('#name');
 export const jobInput = formEditProfile.querySelector('#job');
-export const profileTitle = document.querySelector('.profile__title');
-export const profileSubtitle = document.querySelector('.profile__subtitle');
+export const cardsContainer = document.querySelector('.elements__list');
 export const cardListSection = '.elements__list';
 export const initialCards = [
   {

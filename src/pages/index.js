@@ -1,19 +1,21 @@
-import Section from './Section.js';
-import Card from './Card.js';
-import UserInfo from './UserInfo.js';
-import FormValidator from './FormValidator.js';
-import PopupWithImage from './PopupWithImage.js';
-import PopupWithForm from './PopupWithForm.js';
-import { formSettings, initialCards, cardListSection } from './utils.js';
-
-const popups = document.querySelectorAll('.popup');
-const buttonAddCard = document.querySelector('.profile__add-button');
-const buttonEditProfile = document.querySelector('.profile__edit-button');
-const formAddCard = document.querySelector('.popup__form_type_add');
-const formEditProfile = document.querySelector('.popup__form_type_edit');
-const nameInput = formEditProfile.querySelector('#name');
-const jobInput = formEditProfile.querySelector('#job');
-const cardsContainer = document.querySelector('.elements__list');
+import './index.css';
+import Section from '../components/Section.js';
+import Card from '../components/Card.js';
+import UserInfo from '../components/UserInfo.js';
+import FormValidator from '../components/FormValidator.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import {
+  popups,
+  buttonAddCard,
+  buttonEditProfile,
+  nameInput,
+  jobInput,
+  cardsContainer,
+  formSettings,
+  initialCards,
+  cardListSection
+} from '../components/utils.js';
 
 function initPopups () {
   popups.forEach((popup) => {
@@ -29,7 +31,6 @@ const cardList = new Section({
     const card = new Card({
       data: item,
       handleCardClick: () => {
-        // popupImage.setEventListeners();
         popupImage.open(item.name, item.link);
       }
     }, '#card-template');
@@ -67,7 +68,6 @@ const popupTypeAdd = new PopupWithForm({
         link: item.photo
       },
       handleCardClick: () => {
-        // popupImage.setEventListeners();
         popupImage.open(item['place-name'], item.photo);
       }
     }, '#card-template');
@@ -88,14 +88,11 @@ buttonEditProfile.addEventListener('click', () => {
   nameInput.value = userData.name;
   jobInput.value = userData.info;
   profileValidation.resetValidation();
-  // popupTypeEdit.setEventListeners();
   popupTypeEdit.open();
 });
 window.addEventListener('load', () => { initPopups(); });
 buttonAddCard.addEventListener('click', () => {
-  formAddCard.reset();
   newCardValidation.resetValidation();
-  // popupTypeAdd.setEventListeners();
   popupTypeAdd.open();
 });
 
