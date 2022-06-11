@@ -11,41 +11,55 @@ import {
   buttonEditProfile,
   nameInput,
   jobInput,
-  cardsContainer,
   formSettings,
   initialCards,
   cardListSection
 } from '../components/utils.js';
 
-function initPopups () {
+function initPopups() {
   popups.forEach((popup) => {
     popup.classList.remove('popup__preload');
   });
 }
 
-const popupImage = new PopupWithImage('.popup_type_photo');
-
-const cardList = new Section({
-  items: initialCards,
-  renderer: (item) => {
-    const card = new Card({
-      data: item,
-      handleCardClick: () => {
-        popupImage.open(item.name, item.link);
-      }
-    }, '#card-template');
-    const cardItem = card.generateCard();
-    cardList.addItem(cardItem);
-  }
-}, cardListSection);
-
-cardList.renderItems();
-
-function preloadPopup () {
-  popups.forEach((popup) => {
-    popup.classList.add('popup__preload');
-  });
+function createCard(data, handleCardClick, cardSelector) {
+  const cardItem = new Card({data, handleCardClick}, cardSelector);
+  return cardItem.generateCard();
 }
+
+function createSection(data, prepend = false) {
+  const sectionObject = new Section({
+    items: data,
+    renderer: (item) => {
+      const cardItem = createCard(item, () => {popupImage.open(item.name, item.link)}, '#card-template');
+      if (prepend) {
+        sectionObject.prependItem(cardItem);
+      } else {
+        sectionObject.addItem(cardItem);
+      }
+    }
+  }, cardListSection);
+  sectionObject.renderItems();
+}
+
+createSection(initialCards);
+
+const popupImage = new PopupWithImage('.popup_type_photo');
+popupImage.setEventListeners();
+
+const popupTypeAdd = new PopupWithForm({
+  popupSelector: '.popup_type_add',
+  handleFormSubmit: (item) => {
+    createSection([{
+      name: item['place-name'],
+      link: item.photo
+    }],
+    true);
+    popupTypeAdd.close();
+  }
+});
+
+popupTypeAdd.setEventListeners();
 
 const userInfo = new UserInfo({
   nameElementSelector: '.profile__title',
@@ -56,43 +70,39 @@ const popupTypeEdit = new PopupWithForm({
   popupSelector: '.popup_type_edit',
   handleFormSubmit: (data) => {
     userInfo.setUserInfo(data.name, data.job);
+    popupTypeEdit.close();
   }
 });
 
-const popupTypeAdd = new PopupWithForm({
-  popupSelector: '.popup_type_add',
-  handleFormSubmit: (item) => {
-    const card = new Card({
-      data: {
-        name: item['place-name'],
-        link: item.photo
-      },
-      handleCardClick: () => {
-        popupImage.open(item['place-name'], item.photo);
-      }
-    }, '#card-template');
-    const cardItem = card.generateCard();
-    cardsContainer.prepend(cardItem);
-  }
-});
+popupTypeEdit.setEventListeners();
+
+function preloadPopup() {
+  popups.forEach((popup) => {
+    popup.classList.add('popup__preload');
+  });
+}
+
+preloadPopup();
 
 const profileValidation = new FormValidator(formSettings, popupTypeEdit.form);
 const newCardValidation = new FormValidator(formSettings, popupTypeAdd.form);
 profileValidation.enableValidation();
 newCardValidation.enableValidation();
 
-preloadPopup();
-
-buttonEditProfile.addEventListener('click', () => {
+function handleButtonEditProfileClick() {
   const userData = userInfo.getUserInfo();
   nameInput.value = userData.name;
   jobInput.value = userData.info;
   profileValidation.resetValidation();
   popupTypeEdit.open();
-});
-window.addEventListener('load', () => { initPopups(); });
-buttonAddCard.addEventListener('click', () => {
+}
+
+function handleButtonAddCardClick() {
   newCardValidation.resetValidation();
   popupTypeAdd.open();
-});
+}
+
+window.addEventListener('load', () => { initPopups(); });
+buttonEditProfile.addEventListener('click', handleButtonEditProfileClick);
+buttonAddCard.addEventListener('click', handleButtonAddCardClick);
 

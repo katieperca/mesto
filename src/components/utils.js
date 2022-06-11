@@ -5,7 +5,6 @@ export const formAddCard = document.querySelector('.popup__form_type_add');
 export const formEditProfile = document.querySelector('.popup__form_type_edit');
 export const nameInput = formEditProfile.querySelector('#name');
 export const jobInput = formEditProfile.querySelector('#job');
-export const cardsContainer = document.querySelector('.elements__list');
 export const cardListSection = '.elements__list';
 export const initialCards = [
   {
