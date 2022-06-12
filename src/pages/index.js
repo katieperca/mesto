@@ -22,27 +22,23 @@ function initPopups() {
   });
 }
 
-function createCard(data, handleCardClick, cardSelector) {
-  const cardItem = new Card({data, handleCardClick}, cardSelector);
+function createCard(data) {
+  function handleCardClick() {
+    popupImage.open(data.name, data.link);
+  }
+  const cardItem = new Card({data, handleCardClick}, '#card-template');
   return cardItem.generateCard();
 }
 
-function createSection(data, prepend = false) {
-  const sectionObject = new Section({
-    items: data,
-    renderer: (item) => {
-      const cardItem = createCard(item, () => {popupImage.open(item.name, item.link)}, '#card-template');
-      if (prepend) {
-        sectionObject.prependItem(cardItem);
-      } else {
-        sectionObject.addItem(cardItem);
-      }
-    }
-  }, cardListSection);
-  sectionObject.renderItems();
-}
+const cardList = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const cardItem = createCard(item);
+    cardList.addItem(cardItem);
+  }
+}, cardListSection);
 
-createSection(initialCards);
+cardList.renderItems();
 
 const popupImage = new PopupWithImage('.popup_type_photo');
 popupImage.setEventListeners();
@@ -50,11 +46,11 @@ popupImage.setEventListeners();
 const popupTypeAdd = new PopupWithForm({
   popupSelector: '.popup_type_add',
   handleFormSubmit: (item) => {
-    createSection([{
-      name: item['place-name'],
-      link: item.photo
-    }],
-    true);
+    const cardItem = createCard({
+          name: item['place-name'],
+          link: item.photo
+        });
+    cardList.prependItem(cardItem);
     popupTypeAdd.close();
   }
 });
