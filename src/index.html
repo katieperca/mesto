@@ -16,7 +16,9 @@
     </header>
     <main class="content container">
       <section class="profile">
-        <img src="<%=require('./images/avatar.jpg')%>" alt="Аватар" class="profile__avatar avatar">
+        <button class="profile__avatar-button">
+          <img src="<%=require('./images/avatar.jpg')%>" alt="Аватар" class="profile__avatar avatar">
+        </button>
         <div class="profile__info">
           <div class="profile__container">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -67,6 +69,26 @@
         <button class="popup__close-button button button_type_close" type="button">Закрыть</button>
       </div>
     </section>
+    <section class="popup popup_type_confirm">
+      <div class="popup__container">
+        <form action="post" class="popup__form popup__form_type_confirm form" novalidate>
+          <h2 class="form__title form__title_type_confirm">Вы уверены?</h2>
+          <button class="form__save-button form__save-button_type_confirm button button_type_save" type="submit">Да</button>
+        </form>
+        <button class="popup__close-button button button_type_close" type="button">Закрыть</button>
+      </div>
+    </section>
+    <section class="popup popup_type_update-avatar">
+      <div class="popup__container">
+        <form action="post" class="popup__form popup__form_type_update-avatar form" novalidate>
+          <h2 class="form__title">Обновить аватар</h2>
+          <input class="form__input" id="photo" type="url" name="photo" placeholder="Ссылка на картинку" required>
+          <span id="update-avatar-error" class="form__input-error update-avatar-error"></span>
+          <button class="form__save-button form__save-button_type_update-avatar form__save-button_inactive button button_type_save" disabled type="submit">Сохранить</button>
+        </form>
+        <button class="popup__close-button button button_type_close" type="button">Закрыть</button>
+      </div>
+    </section>
   </div>
   <template id="card-template">
     <li class="elements__item card">
@@ -76,7 +98,10 @@
       <button aria-label="Удалить" type="button" class="card__delete-button button button_type_delete"></button>
       <div class="card__info">
         <h3 class="card__title"></h3>
-        <button aria-label="Поставить лайк" type="button" class="card__like-button button button_type_like"></button>
+        <div class="card__like-container">
+          <button aria-label="Поставить лайк" type="button" class="card__like-button button button_type_like"></button>
+          <span class="card__like-counter"></span>
+        </div>
       </div>
     </li>
   </template>
