@@ -23,7 +23,6 @@
   background-position: center;
 }
 
-
 .profile__avatar-button:hover::after {
   display: block;
 }
