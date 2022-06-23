@@ -59,6 +59,12 @@ function createCard(data, userId) {
   return cardItem.generateCard();
 }
 
+function preloadPopup() {
+  popups.forEach((popup) => {
+    popup.classList.add('popup__preload');
+  });
+}
+
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-43',
   headers: {
@@ -89,14 +95,16 @@ const popupTypeAdd = new PopupWithForm({
   handleFormSubmit: (item) => {
     popupTypeAdd.renderLoading(true);
     api.addCard(item['place-name'], item.photo)
-    .then(data => {
-      const cardItem = createCard(data, userInfo._id);
-      cardList.prependItem(cardItem);
-    })
-    .catch((err) => {
-      console.log('Ой, ошибка', err);
-    });
-    popupTypeAdd.close();
+      .then(data => {
+        const cardItem = createCard(data, userInfo._id);
+        cardList.prependItem(cardItem);
+        popupTypeAdd.close();
+      })
+      .catch((err) => {
+        console.log('Ой, ошибка', err);
+      }).finally(() => {
+        popupTypeAdd.renderLoading(false);
+      });
   }
 });
 
@@ -104,9 +112,17 @@ const popupTypeEdit = new PopupWithForm({
   popupSelector: '.popup_type_edit',
   handleFormSubmit: (data) => {
     popupTypeEdit.renderLoading(true);
-    userInfo.setUserInfo(data);
-    api.updateUserData(data.name, data.about);
-    popupTypeEdit.close();
+    api.updateUserData(data.name, data.about)
+      .then((res) => {
+        userInfo.setUserInfo(res);
+        popupTypeEdit.close();
+      })
+      .catch((err) => {
+        console.log('Ой, ошибка', err);
+      })
+      .finally(() => {
+        popupTypeEdit.renderLoading(false);
+      });
   }
 });
 
@@ -114,9 +130,17 @@ const popupTypeUpdateAvatar = new PopupWithForm({
   popupSelector: '.popup_type_update-avatar',
   handleFormSubmit: (data) => {
     popupTypeUpdateAvatar.renderLoading(true);
-    userInfo.setUserInfo(data);
-    api.updateAvatar(data.avatar);
-    popupTypeUpdateAvatar.close();
+    api.updateAvatar(data.avatar)
+      .then((res) => {
+        userInfo.setUserInfo(res);
+        popupTypeUpdateAvatar.close();
+      })
+      .catch((err) => {
+        console.log('Ой, ошибка', err);
+      })
+      .finally(() => {
+        popupTypeUpdateAvatar.renderLoading(false);
+      });
   }
 });
 
@@ -127,34 +151,17 @@ const popupConfirmDeletion = new PopupWithConfirmation({
   }
 });
 
-function preloadPopup() {
-  popups.forEach((popup) => {
-    popup.classList.add('popup__preload');
-  });
-}
-
 const profileValidation = new FormValidator(formSettings, popupTypeEdit.form);
 const newCardValidation = new FormValidator(formSettings, popupTypeAdd.form);
 const newAvatarValidation = new FormValidator(formSettings, popupTypeUpdateAvatar.form);
 
-api.getUserData()
-  .then((data) => {
+Promise.all([api.getUserData(), api.getInitialCards()])
+  .then(([data, cards]) => {
     userInfo.setUserInfo(data);
-    initCards(userInfo, cardList);
-  })
-  .catch((err) => {
+    cardList.renderItems(cards, data._id);
+  }).catch((err) => {
     console.log('Ой, ошибка', err);
   });
-
-function initCards(userInfo, cardList) {
-  api.getInitialCards()
-    .then((cards) => {
-      cardList.renderItems(cards, userInfo._id);
-    })
-    .catch((err) => {
-      console.log('Ой, ошибка', err);
-    });
-}
 
 function initPopups() {
   popups.forEach((popup) => {
@@ -167,19 +174,16 @@ function handleButtonEditProfileClick() {
   nameInput.value = userData.name;
   aboutInput.value = userData.info;
   profileValidation.resetValidation();
-  popupTypeEdit.renderLoading(false);
   popupTypeEdit.open();
 }
 
 function handleButtonAddCardClick() {
   newCardValidation.resetValidation();
-  popupTypeAdd.renderLoading(false);
   popupTypeAdd.open();
 }
 
 function handleAvatarClick() {
   newAvatarValidation.resetValidation();
-  popupTypeUpdateAvatar.renderLoading(false);
   popupTypeUpdateAvatar.open();
 }
 
